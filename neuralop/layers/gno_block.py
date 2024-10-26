@@ -171,7 +171,9 @@ class GNOBlock(nn.Module):
         if transform_type == "nonlinear" or transform_type == "nonlinear_kernelonly":
             kernel_in_dim += self.in_channels
             kernel_in_dim_str += " + dim(f_y)"
-
+        
+        self.channel_mlp = channel_mlp
+        
         if channel_mlp is not None:
             assert channel_mlp.in_channels == kernel_in_dim, f"Error: expected ChannelMLP to take\
                   input with {kernel_in_dim} channels (feature channels={kernel_in_dim_str}),\
